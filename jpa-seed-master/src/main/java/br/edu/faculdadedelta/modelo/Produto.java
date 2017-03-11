@@ -70,6 +70,17 @@ public class Produto extends BaseEntity<Long>{
 	public void setValidade(Date validade) {this.validade = validade;}
 
 	public void setId(Long id) {this.id = id;}
+
+
+
+	public Produto(String nome, String fabricante) {
+		super();
+		this.nome = nome;
+		this.fabricante = fabricante;
+	}
+
+   public Produto() {super();}
+	
 	
 	
 

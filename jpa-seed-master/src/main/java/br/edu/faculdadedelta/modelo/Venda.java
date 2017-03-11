@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.edu.faculdadedelta.generic.BaseEntity;
 
@@ -39,7 +41,8 @@ public class Venda extends BaseEntity<Long>{
 	@JoinTable(name="venda_produto",joinColumns = @JoinColumn(name="id_venda"),inverseJoinColumns = @JoinColumn(name="id_produto"))
 	private List<Produto> listaProdutos;
 
-	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="dh_venda",nullable=false)
 	private Date dataHora;
 	
 	@Override
@@ -48,6 +51,7 @@ public class Venda extends BaseEntity<Long>{
 		return null;
 	}
 
+	
 	public Date getDataHora() {return dataHora;}
 	
 	public Cliente getCliente() {return cliente;}
