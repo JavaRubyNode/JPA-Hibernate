@@ -56,6 +56,10 @@ public class Cliente extends BaseEntity<Long>{
 
 	public Cliente(Long id, String nome) {this.id = id;this.nome = nome;}
 
+	public Cliente(String nome, String cpf) {this.nome = nome;this.cpf = cpf;}
+	
+	
+
 	
 
 
