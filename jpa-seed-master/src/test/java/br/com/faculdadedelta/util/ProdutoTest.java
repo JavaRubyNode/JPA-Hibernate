@@ -1,16 +1,17 @@
 package br.com.faculdadedelta.util;
 
+import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
-import java.util.function.LongFunction;
 
 import br.edu.faculdadedelta.modelo.Produto;
 import br.edu.faculdadedelta.util.JpaUtil;
@@ -77,10 +78,17 @@ public class ProdutoTest {
 		em.getTransaction().commit();
 		Produto excluido = em.find(Produto.class, id);
 		assertNull("nao encontrado ",excluido);
-		
 				
 	}
-	
+	@AfterClass
+	public static void limparTabela(){
+		EntityManager entityManager = JpaUtil.INSTANCE.getEntityManager();
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createQuery("delete from Produto p");
+		int qtde = query.executeUpdate();
+		entityManager.getTransaction().commit();
+		assertTrue("tabela limpa ", qtde >0);
+	}
 	
 	
 	
